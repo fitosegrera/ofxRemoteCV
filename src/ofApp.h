@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxSimpleTimer.h"
+#include "ofxOpenCv.h"
+#include "ofxJSON.h"
 
 class ofApp : public ofBaseApp{
 
@@ -21,4 +24,31 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+		void getImage(string u, string usr, string pwd);
+		void drawBlobs();
+		void timerCompleteHandler(int &args);
+
+		void drawStrokes(vector<ofPoint> strokes, int radius);
+		
+		ofxJSONElement config;
+
+		ofxSimpleTimer timer;
+		int period;
+		ofImage snapshot;
+		string url;
+		bool frameNew;
+		string user, password;
+		int w, h;
+
+		ofxCvColorImage	colorImg;
+        ofxCvGrayscaleImage grayImage;
+		ofxCvGrayscaleImage grayBg;
+		ofxCvGrayscaleImage grayDiff;
+        ofxCvContourFinder contourFinder;
+		int threshold;
+		bool bLearnBakground;
+		int state;
+
+		vector<ofPoint> positions;
+
 };
